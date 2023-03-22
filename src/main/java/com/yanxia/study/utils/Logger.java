@@ -18,10 +18,31 @@ public class Logger {
     IAccountService accountService;
 
     /**
-     * 用于打印日志，计划让其在切入点方法执行之前执行
-      */
-    public void printLog(){
-        System.out.println("开始记录日志");
+     * 前置通知，计划让其在切入点方法执行之前执行
+     */
+    public void printBeforeLog(){
+        System.out.println("方法开始执行");
+    }
+
+    /**
+     * 后置通知，计划让其在切入点方法正常执行之后执行
+     */
+    public void printAfterLog(){
+        System.out.println("方法正常执行完毕");
+    }
+
+    /**
+     * 异常通知，计划让其在切入点方法执行出现异常时执行
+     */
+    public void printThrowLog(){
+        System.out.println("方法执行出现异常");
+    }
+
+    /**
+     * 最终通知，计划让其在切入点方法执行结束后执行
+     */
+    public void printFinalLog(){
+        System.out.println("方法执行结束");
     }
 
 

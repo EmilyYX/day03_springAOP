@@ -44,8 +44,14 @@
     <bean id="logger" class="com.yanxia.study.utils.Logger"></bean>
     <aop:config>
         <aop:aspect id="logAdvice" ref="logger">
-            <aop:before method="printLog"
+            <aop:before method="printBeforeLog"
                         pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:before>
+            <aop:after-returning method="printAfterLog"
+                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after-returning>
+            <aop:after-throwing method="printThrowLog"
+                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after-throwing>
+            <aop:after method="printFinalLog"
+                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after>
         </aop:aspect>
     </aop:config>
 
