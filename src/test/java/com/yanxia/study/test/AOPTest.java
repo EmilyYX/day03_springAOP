@@ -9,8 +9,5 @@ public class AOPTest {
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         IAccountService as =(IAccountService) ac.getBean("accountService");
         as.saveAccount();
-        int i = as.deleteAccount();
-        System.out.println(i);
-        as.updateAccount(1);
     }
 }

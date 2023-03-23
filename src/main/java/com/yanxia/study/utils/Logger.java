@@ -1,6 +1,7 @@
 package com.yanxia.study.utils;
 
 import com.yanxia.study.service.IAccountService;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -43,6 +44,26 @@ public class Logger {
      */
     public void printFinalLog(){
         System.out.println("方法执行结束");
+    }
+
+    /**
+     * 环绕通知
+     * 它是spring框架为我们提供的一种可以在代码中手动控制增强方法合适执行的方式。
+     */
+    public Object printAroundLog(ProceedingJoinPoint pjp){
+        Object returnValue = null;
+        try{
+            System.out.println("前置log");
+            Object[] args = pjp.getArgs();
+            returnValue = pjp.proceed(args);
+            System.out.println("后置log");
+            return returnValue;
+        } catch (Throwable e) {
+            System.out.println("异常log");
+            throw new RuntimeException(e);
+        }finally {
+            System.out.println("最终log");
+        }
     }
 
 

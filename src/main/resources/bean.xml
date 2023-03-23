@@ -43,15 +43,17 @@
 
     <bean id="logger" class="com.yanxia.study.utils.Logger"></bean>
     <aop:config>
+        <aop:pointcut id="pointcut1" expression="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"/>
         <aop:aspect id="logAdvice" ref="logger">
             <aop:before method="printBeforeLog"
-                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:before>
+                        pointcut-ref="pointcut1"></aop:before>
             <aop:after-returning method="printAfterLog"
-                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after-returning>
+                                 pointcut-ref="pointcut1"></aop:after-returning>
             <aop:after-throwing method="printThrowLog"
-                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after-throwing>
+                                pointcut-ref="pointcut1"></aop:after-throwing>
             <aop:after method="printFinalLog"
-                        pointcut="execution( * com.yanxia.study.service.impl.AccountServiceImpl.*(..))"></aop:after>
+                       pointcut-ref="pointcut1"></aop:after>
+            <aop:around method="printAroundLog" pointcut-ref="pointcut1"></aop:around>
         </aop:aspect>
     </aop:config>
 
